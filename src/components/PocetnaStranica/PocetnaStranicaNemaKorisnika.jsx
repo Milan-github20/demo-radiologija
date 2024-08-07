@@ -13,6 +13,8 @@ const PocetnaStranicaNemaKorisnika = ({
   setUser,
   user,
   fetchDataPacijentIzis,
+  setKorisnik,
+  setPol,
 }) => {
   const [hasFetched, setHasFetched] = useState(false);
 
@@ -41,7 +43,16 @@ const PocetnaStranicaNemaKorisnika = ({
   };
 
   const potvrdiUnos = () => {
-    fetchDataPacijentIzis(user);
+    // fetchDataPacijentIzis(user);
+    setKorisnik({
+      ime: "Milan",
+      prezime: "Jagodic",
+      pol: "M",
+      dat_rod: "20.02.2002",
+      jmbg: 2002002100045,
+    });
+
+    setPol("M");
   };
 
   const handleShift = () => {

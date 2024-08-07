@@ -17,6 +17,7 @@ const PocetnaStranica = ({
   setKorisnik,
   trenutnaStranicaPregled,
   setTrenutnaStranicaPregled,
+  setPol,
 }) => {
   const [korak, setKorak] = useState(0);
 
@@ -46,6 +47,7 @@ const PocetnaStranica = ({
             user={user}
             fetchDataPacijentIzis={fetchDataPacijentIzis}
             setKorisnik={setKorisnik}
+            setPol={setPol}
           />
         ) : korak === 0 ? (
           <>

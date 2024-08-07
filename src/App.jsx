@@ -15,34 +15,43 @@ function App() {
   const [pol, setPol] = useState(null);
   const [trenutnaStranicaPregled, setTrenutnaStranicaPregled] = useState(0);
 
-  const povuciPodatkeIzis = useCallback(async (url, metod, data = null) => {
-    const response = await fetch(
-      `http://10.8.0.14:8080/kis/rpc/radiologija_lokal.cfc?method=${url}&__BDRETURNFORMAT=json`,
-      {
-        method: metod,
-        headers: {
-          "Content-Type": "application/x-www-form-urlencoded",
-        },
-        body: data,
-        mode: "no-cors",
-      }
-    );
+  // const povuciPodatkeIzis = useCallback(async (url, metod, data = null) => {
+  //   const response = await fetch(
+  //     `http://10.8.0.14:8080/kis/rpc/radiologija_lokal.cfc?method=${url}&__BDRETURNFORMAT=json`,
+  //     {
+  //       method: metod,
+  //       headers: {
+  //         "Content-Type": "application/x-www-form-urlencoded",
+  //       },
+  //       body: data,
+  //       mode: "no-cors",
+  //     }
+  //   );
 
-    return { ok: response.ok, data: await response.json() };
-  }, []);
+  //   return { ok: response.ok, data: await response.json() };
+  // }, []);
 
-  const fetchDataPacijentIzis = async (user) => {
-    const response = await povuciPodatkeIzis(`OsiguranikUID&id=${user}`, "GET");
+  // const fetchDataPacijentIzis = async (user) => {
+  //   const response = await povuciPodatkeIzis(`OsiguranikUID&id=${user}`, "GET");
 
-    if (response.ok) {
-      if (response.data["parsiran_odgovor"]) {
-        setKorisnik(response.data["parsiran_odgovor"].items[0]);
-        setPol(response.data["parsiran_odgovor"].items[0].pol);
-      } else {
-        toast.error("Ne postoji karton pacijenta!");
-      }
-    }
-  };
+  //   if (response.ok) {
+  //     if (response.data["parsiran_odgovor"]) {
+  //       // setKorisnik(response.data["parsiran_odgovor"].items[0]);
+  //       // setPol(response.data["parsiran_odgovor"].items[0].pol);
+  //       setKorisnik({
+  //         ime: "Milan",
+  //         prezime: "Jagodic",
+  //         pol: "M",
+  //         dat_rod: "20.02.2002",
+  //         jmbg: 2002002100045,
+  //       });
+
+  //       setPol("M");
+  //     } else {
+  //       toast.error("Ne postoji karton pacijenta!");
+  //     }
+  //   }
+  // };
 
   switch (trenutnaStranica) {
     case 0:
@@ -82,10 +91,11 @@ function App() {
               setKorisnik={setKorisnik}
               user={user}
               korisnik={korisnik}
-              fetchDataPacijentIzis={fetchDataPacijentIzis}
+              // fetchDataPacijentIzis={fetchDataPacijentIzis}
               setTrenutnaStranica={setTrenutnaStranica}
               setTrenutnaStranicaPregled={setTrenutnaStranicaPregled}
               trenutnaStranicaPregled={trenutnaStranicaPregled}
+              setPol={setPol}
             />
           }
         </div>
